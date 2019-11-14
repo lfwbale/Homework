@@ -156,6 +156,7 @@ func (rf *Raft) Kill() {
 func genElectionTimeout() time.Duration {
 	return time.Duration(rand.Intn(150)+150) * time.Millisecond
 }
+
 //发出心跳
 type AppendEntriesArgs struct {
 	Term     int	//laeder's term
@@ -333,7 +334,7 @@ func (rf *Raft) broadcastRequestVote() {
 
 func (rf *Raft) getLeader() {
 	rf.mu.Lock()
-	//开始下一任选举并给自己头上一票
+	//开始下一任选举并给自己投上一票
 	rf.currentTerm++
 	rf.votedFor = rf.me
 	rf.voteCount = 1

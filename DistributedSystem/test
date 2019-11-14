@@ -1,0 +1,11 @@
+#!/bin/bash
+#进行100次测试
+cd NJU-DisSys-2017-master
+export GOPATH=$PWD
+cd src/raft/
+for (( i=1;i <= 100; i++ ))
+do
+	echo -e "\n----------test$i-----------";
+	go test -run Election;
+done
+
